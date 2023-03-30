@@ -7,7 +7,7 @@ This notebook and related dataset has been produced to support the publication o
 
 
 Installing and loading required packages:
-```{r}
+```{r warning= FALSE}
 if(!("sp" %in% rownames(installed.packages()))) 
   install.packages("sp")
 if(!("sf" %in% rownames(installed.packages()))) 
@@ -41,6 +41,11 @@ Loading relevant data for the analysis:
 ```{r}
 data_dir = 'your-directory-here'
 load(paste0(data_dir,'/analysis_data_coral_species.RData'))
+load(paste0(data_dir,'/Environmental_1.RData'))
+load(paste0(data_dir,'/Environmental_2.RData'))
+ENV_DATA = ENV_DATA1
+ENV_DATA@data = cbind(ENV_DATA@data, ENV_DATA2@data)
+rm(ENV_DATA1, ENV_DATA2)
 ```
 Data that has just been loaded:
 - "ENV_DATA": 'SpatialGridDataFrame' object (from library "sp") that contains all the gridded environmental data used for the models
